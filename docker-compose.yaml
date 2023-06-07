@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  lingua-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: lingua
+      POSTGRES_PASSWORD: lingua
+      POSTGRES_DB: lingua
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgresql/data
