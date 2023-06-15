@@ -1,29 +1,24 @@
-package com.github.andreldsr.lingua.word
+package com.github.andreldsr.lingua.auth.role
 
-import com.github.andreldsr.lingua.translation.Translation
-import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
-import jakarta.persistence.ManyToMany
 import org.hibernate.Hibernate
+import org.springframework.security.core.GrantedAuthority
 
 @Entity
-data class Word(
+data class Role(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-    val content: String,
-    @Column(name = "language_id")
-    val languageId: Long,
-    @ManyToMany
-    val translations: MutableList<Translation> = mutableListOf()
-) {
+    val name: String
+) : GrantedAuthority {
+    override fun getAuthority() = name
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false
-        other as Word
+        other as Role
 
         return id != null && id == other.id
     }

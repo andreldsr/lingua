@@ -1,29 +1,30 @@
-package com.github.andreldsr.lingua.word
+package com.github.andreldsr.lingua.auth.user
 
-import com.github.andreldsr.lingua.translation.Translation
-import jakarta.persistence.Column
+import com.github.andreldsr.lingua.auth.role.Role
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.ManyToMany
+import jakarta.persistence.Table
 import org.hibernate.Hibernate
+import java.util.UUID
 
 @Entity
-data class Word(
+@Table(name = "\"user\"")
+data class User(
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = null,
-    val content: String,
-    @Column(name = "language_id")
-    val languageId: Long,
+    @GeneratedValue(generator = "UUID")
+    val id: UUID? = null,
+    val name: String,
+    val email: String,
+    val password: String,
     @ManyToMany
-    val translations: MutableList<Translation> = mutableListOf()
+    val roles: List<Role> = emptyList()
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other == null || Hibernate.getClass(this) != Hibernate.getClass(other)) return false
-        other as Word
+        other as User
 
         return id != null && id == other.id
     }
