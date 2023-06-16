@@ -32,7 +32,7 @@ class QuestionService(
         return questionRepository.findAll()
     }
 
-    fun delete(id: Long) {
-        return questionRepository.deleteById(id)
-    }
+    fun delete(id: Long) = questionRepository.deleteById(id)
+
+    fun findByStoryId(id: Long) = questionRepository.findByStoryId(id)
 }

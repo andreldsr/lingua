@@ -19,7 +19,8 @@ class StoryService(
             title = request.title,
             content = request.content,
             level = request.level,
-            language = language
+            language = language,
+            cover = request.cover
         )
         storyRepository.save(story)
         val questions = mutableListOf<Question>()
