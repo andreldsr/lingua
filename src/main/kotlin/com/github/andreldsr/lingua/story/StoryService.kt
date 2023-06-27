@@ -32,6 +32,12 @@ class StoryService(
         return story.copy(quiz = questions)
     }
 
+    fun updateCover(id: Long, request: UpdateCoverRequest): Story {
+        val story = storyRepository.findById(id)
+            .orElseThrow { RuntimeException("Story $id not found") }
+        return storyRepository.save(story.copy(cover = request.cover))
+    }
+
     fun find(id: Long) = storyRepository.findById(id)
 
     fun delete(id: Long) = storyRepository.deleteById(id)

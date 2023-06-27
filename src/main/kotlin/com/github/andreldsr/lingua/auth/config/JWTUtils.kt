@@ -1,5 +1,6 @@
 package com.github.andreldsr.lingua.auth.config
 
+import com.github.andreldsr.lingua.auth.user.UserDetailImpl
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm.HS256
@@ -38,7 +39,8 @@ class JWTUtils(
     }
 
     fun generateToken(userDetails: UserDetails): String {
-        val claims: Map<String, Any> = mutableMapOf()
+        val user = userDetails as UserDetailImpl
+        val claims: Map<String, Any> = mutableMapOf("name" to user.name)
         return createToken(claims, userDetails)
     }
 

@@ -7,6 +7,7 @@ import java.util.UUID
 data class UserDetailImpl(
     val id: UUID,
     val email: String,
+    val name: String,
     val userPassword: String,
     val roles: List<Role>
 ) : UserDetails {
@@ -19,4 +20,10 @@ data class UserDetailImpl(
     override fun isEnabled() = true
 }
 
-fun User.toUserDetail() = UserDetailImpl(id!!, email, password, roles)
+fun User.toUserDetail() = UserDetailImpl(
+    id = id!!,
+    email = email,
+    name = name,
+    userPassword = password,
+    roles = roles
+)
