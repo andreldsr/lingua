@@ -7,13 +7,8 @@ import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/languages")
+@RequestMapping("/api/admin/languages")
 class LanguageAdminController(private val languageService: LanguageService) {
-
-    @Observed(name = "language.findAll")
-    @GetMapping
-    @Operation(summary = "List all languages", tags = ["Language"], security = [SecurityRequirement(name = "bearer-key")])
-    fun findAll(): List<Language> = languageService.findAll()
 
     @GetMapping("/{title}")
     @Operation(summary = "Find language by title", tags = ["Language"], security = [SecurityRequirement(name = "bearer-key")])

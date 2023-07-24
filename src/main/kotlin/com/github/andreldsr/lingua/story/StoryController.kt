@@ -17,4 +17,13 @@ class StoryController(private val storyService: StoryService) {
     @GetMapping("/{id}")
     @Operation(summary = "Find story by Id", tags = ["Stories"], security = [SecurityRequirement(name = "bearer-key")])
     fun find(@PathVariable id: Long) = storyService.find(id)
+
+    @GetMapping("/{languageId}/level/{level}")
+    @Operation(
+        summary = "Find story by language id and level",
+        tags = ["Stories"],
+        security = [SecurityRequirement(name = "bearer-key")]
+    )
+    fun findByLanguageIdAndLevel(@PathVariable languageId: Long, @PathVariable level: String) =
+        storyService.findByLanguageIdAndLevel(languageId, level)
 }

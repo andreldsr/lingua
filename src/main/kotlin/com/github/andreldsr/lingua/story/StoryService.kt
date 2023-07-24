@@ -48,4 +48,8 @@ class StoryService(
 
 
     fun findAll(): List<StoryListDto> = storyRepository.findBy()
+    fun findByLanguageIdAndLevel(languageId: Long, level: String): Story? {
+//        val principal = SecurityContextHolder.getContext().authentication.principal as UserDetailImpl
+        return storyRepository.findTop1ByLanguageIdAndLevel(languageId, level)
+    }
 }
