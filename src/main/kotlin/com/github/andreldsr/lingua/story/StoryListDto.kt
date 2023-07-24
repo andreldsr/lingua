@@ -5,5 +5,5 @@ interface StoryListDto {
     fun getTitle(): String
     fun getLevel(): String
     fun getCover(): String
-    fun getLanguageTitle(): String
+    fun getLanguageCode(): String
 }

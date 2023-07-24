@@ -2,15 +2,7 @@ package com.github.andreldsr.lingua.story
 
 import com.github.andreldsr.lingua.language.Language
 import com.github.andreldsr.lingua.question.Question
-import com.github.andreldsr.lingua.word.Word
-import jakarta.persistence.Entity
-import jakarta.persistence.FetchType
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.ManyToMany
-import jakarta.persistence.ManyToOne
-import jakarta.persistence.OneToMany
+import jakarta.persistence.*
 import org.hibernate.Hibernate
 
 @Entity
@@ -23,10 +15,8 @@ data class Story(
     val level: String = "",
     @ManyToOne
     val language: Language? = null,
-    @OneToMany(mappedBy = "storyId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "storyId", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     val quiz: List<Question> = emptyList(),
-    @ManyToMany(fetch = FetchType.LAZY)
-    val vocabulary: List<Word> = emptyList(),
     val cover: String = ""
 ) {
     override fun equals(other: Any?): Boolean {

@@ -42,5 +42,8 @@ class StoryService(
 
     fun delete(id: Long) = storyRepository.deleteById(id)
 
+    fun deleteAll() = storyRepository.deleteAll()
+
+
     fun findAll(): List<StoryListDto> = storyRepository.findBy()
 }

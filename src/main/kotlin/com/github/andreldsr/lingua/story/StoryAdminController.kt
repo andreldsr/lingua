@@ -41,4 +41,13 @@ class StoryAdminController(private val storyService: StoryService) {
     )
     fun updateCover(@PathVariable id: Long, @RequestBody request: UpdateCoverRequest) =
         storyService.updateCover(id, request)
+
+    @DeleteMapping()
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @Operation(
+        summary = "Delete all stories",
+        tags = ["Stories"],
+        security = [SecurityRequirement(name = "bearer-key")]
+    )
+    fun deleteAll() = storyService.deleteAll()
 }

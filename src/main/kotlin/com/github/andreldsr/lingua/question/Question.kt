@@ -2,13 +2,7 @@ package com.github.andreldsr.lingua.question
 
 import com.github.andreldsr.lingua.answer.Answer
 import com.github.andreldsr.lingua.language.Language
-import jakarta.persistence.Entity
-import jakarta.persistence.FetchType
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
-import jakarta.persistence.ManyToOne
-import jakarta.persistence.OneToMany
+import jakarta.persistence.*
 import org.hibernate.Hibernate
 
 @Entity
@@ -17,7 +11,7 @@ data class Question(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
     val content: String = "",
-    @OneToMany(mappedBy = "questionId", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "questionId", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     val answers: List<Answer> = emptyList(),
     val storyId: Long? = null,
     @ManyToOne

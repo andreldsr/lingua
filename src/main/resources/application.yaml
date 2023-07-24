@@ -23,3 +23,14 @@ server:
 
 jwt:
   secret: ${JWT_SECRET:ff448f84-686c-47fc-a563-432711006f5a}
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"

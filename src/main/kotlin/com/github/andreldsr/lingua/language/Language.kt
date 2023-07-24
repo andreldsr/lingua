@@ -11,7 +11,7 @@ data class Language(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-    val title: String = ""
+    val code: String = ""
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
