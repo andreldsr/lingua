@@ -8,5 +8,5 @@ data class CreateStoryRequest(
     val level: String,
     val languageId: Long,
     val quiz: List<CreateQuestionRequest> = emptyList(),
-    val cover: String
+    val cover: String? = null
 )

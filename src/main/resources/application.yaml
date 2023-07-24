@@ -24,6 +24,10 @@ server:
 jwt:
   secret: ${JWT_SECRET:ff448f84-686c-47fc-a563-432711006f5a}
 
+story:
+  default-cover: ${STORY_DEFAULT_COVER:https://lingua-bucket.s3.amazonaws.com/images/placeholder_cover.png}
+
+
 management:
   endpoint:
     health:
