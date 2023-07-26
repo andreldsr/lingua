@@ -35,3 +35,5 @@ out/
 
 ### VS Code ###
 .vscode/
+/data/
+/src/main/resources/e2e/http-client.env.json

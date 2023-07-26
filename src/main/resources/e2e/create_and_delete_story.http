@@ -1,0 +1,82 @@
+# Autenticates
+
+POST {{host}}/auth
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "password": "{{password}}"
+}
+
+> {%
+    client.global.set("authToken", response.headers.valueOf("Authorization"))
+%}
+
+###
+
+# Creates new language
+POST {{host}}/admin/languages
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+  "code": "_temp"
+}
+
+> {%
+    client.global.set("languageId", response.body.id)
+%}
+
+###
+
+# Create a new story
+POST {{host}}/admin/stories
+Content-Type: application/json
+Authorization: {{authToken}}
+
+{
+  "title":"_temp",
+  "content":"_temp",
+  "level":"_temp",
+  "languageId":{{languageId}},
+  "quiz":[
+    {
+      "content":"_temp",
+      "answers":[
+        {
+          "content":"_temp",
+          "isCorrect":true
+        }
+      ]
+    }
+  ],
+  "cover":"_temp"
+}
+
+###
+
+DELETE {{host}}/admin/stories
+Accept: application/json
+Authorization: {{authToken}}
+
+###
+
+GET {{host}}/stories
+Accept: application/json
+Authorization: {{authToken}}
+
+###
+
+# Delete created language
+DELETE {{host}}/admin/languages/{{languageId}}
+Content-Type: application/json
+Authorization: {{authToken}}
+
+###
+
+# Gets all languages
+GET {{host}}/languages
+Content-Type: application/json
+Authorization: {{authToken}}
+
+###
