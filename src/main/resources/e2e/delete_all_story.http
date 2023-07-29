@@ -1,0 +1,19 @@
+# Autenticates
+
+POST {{host}}/auth
+Content-Type: application/json
+
+{
+  "email": "{{email}}",
+  "password": "{{password}}"
+}
+
+> {%
+    client.global.set("authToken", response.headers.valueOf("Authorization"))
+%}
+
+###
+
+DELETE {{host}}/admin/stories
+Accept: application/json
+Authorization: {{authToken}}

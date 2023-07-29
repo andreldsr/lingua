@@ -7,14 +7,19 @@ class LanguageService(private val languageRepository: LanguageRepository) {
 
     fun findAll(): List<Language> = languageRepository.findAll()
 
-    fun findByTitle(title: String): Language? =
-        languageRepository.findByCode(title).orElseThrow { LanguageNotFoundException(title) }
+    fun findByCode(code: String): Language? =
+        languageRepository.findByCode(code).orElseThrow { LanguageNotFoundException(code) }
 
     fun save(request: CreateLanguageRequest): Language {
         if (languageRepository.existsByCode(request.code)) {
             throw LanguageAlreadyExistsException(request.code)
         }
-        val language = Language(code = request.code)
+
+        val language = Language(
+            code = request.code,
+            flag = request.flag
+        )
+
         return languageRepository.save(language)
     }
 

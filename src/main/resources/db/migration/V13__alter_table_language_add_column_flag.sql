@@ -1,0 +1,1 @@
+ALTER TABLE "language" ADD COLUMN "flag" VARCHAR(255);

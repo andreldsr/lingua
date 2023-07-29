@@ -1,5 +1,4 @@
 # Autenticates
-
 POST {{host}}/auth
 Content-Type: application/json
 
@@ -20,8 +19,16 @@ Content-Type: application/json
 Authorization: {{authToken}}
 
 {
-  "code": "_temp"
+  "code": "_temp",
+  "flag": "_temp"
 }
+
+###
+
+# Gets language with code "_temp"
+GET {{host}}/languages/de
+Content-Type: application/json
+Authorization: {{authToken}}
 
 > {%
     client.global.set("languageId", response.body.id)
@@ -37,7 +44,7 @@ Authorization: {{authToken}}
 {
   "title":"_temp",
   "content":"_temp",
-  "level":"_temp",
+  "level": 1,
   "languageId":{{languageId}},
   "quiz":[
     {
@@ -55,13 +62,22 @@ Authorization: {{authToken}}
 
 ###
 
-DELETE {{host}}/admin/stories
+# Get story by language and level
+GET {{host}}/stories/{{languageId}}/level/1
 Accept: application/json
 Authorization: {{authToken}}
 
 ###
 
+# Get all stories
 GET {{host}}/stories
+Accept: application/json
+Authorization: {{authToken}}
+
+###
+
+# Deletes all stories
+DELETE {{host}}/admin/stories
 Accept: application/json
 Authorization: {{authToken}}
 

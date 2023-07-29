@@ -10,10 +10,6 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/api/admin/languages")
 class LanguageAdminController(private val languageService: LanguageService) {
 
-    @GetMapping("/{title}")
-    @Operation(summary = "Find language by title", tags = ["Language"], security = [SecurityRequirement(name = "bearer-key")])
-    fun findByTitle(@PathVariable title: String): Language? = languageService.findByTitle(title)
-
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Create a new language", tags = ["Language"], security = [SecurityRequirement(name = "bearer-key")])

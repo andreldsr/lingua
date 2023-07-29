@@ -14,8 +14,6 @@ data class Question(
     @OneToMany(mappedBy = "questionId", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     val answers: List<Answer> = emptyList(),
     val storyId: Long? = null,
-    @ManyToOne
-    val language: Language? = null
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

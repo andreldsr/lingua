@@ -12,7 +12,7 @@ data class Story(
     val id: Long? = null,
     val title: String = "",
     val content: String = "",
-    val level: String = "",
+    val level: Int = -1,
     @ManyToOne
     val language: Language? = null,
     @OneToMany(mappedBy = "storyId", fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
